@@ -30,3 +30,11 @@ note : To use React you need to download Nodejs First run ```$ node -v``` in a p
 ```
 $ npm start
 ```
+
+```
+testUserName: testCustomer
+testPassword: Test123456
+
+ManagerUserName: testManager
+ManagerPassword: TestManager
+```
