@@ -16,7 +16,7 @@ note : To use React you need to download Nodejs First run ```$ node -v``` in a p
 # Follow this Instructions carefully      
 1-Clone Repo ( use this command to push easily ( git push ))
 ```
- $ git clone -b FrontEnd https://github.com/Mark-Nawar/Sol-Movies.git
+ $ git clone -b PopUp https://github.com/Mark-Nawar/Sol-Movies.git
 ```
 2-Change to project dir.
 ```
