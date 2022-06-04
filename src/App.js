@@ -8,21 +8,23 @@ import { StepOne } from './Components/Movies/step1';
 import StepTwo from './Components/Movies/step2';
 import StepThree from './Components/Movies/step3';
 import PastReservations from './Components/Movies/PastReservations';
+import Checkout from './Components/checkout';
+import ConfirmedPage from './Components/checkout/confirm';
 
 
 function App() {
   return (
     <div className="App">
-      
-      <Router> 
+      <Router>
         <Routes>
-          <Route exact path="/"  element={<Home />}/>
-           <Route path="/signup" element={<SignUp/>}/>
-           <Route path="/signin" element={<StepOne/>}/>
-           <Route path="/step2" element={<StepTwo/>}/>  
-           <Route path="/step3" element={<StepThree/>}/> 
-           <Route path="/pastReservations" element={<PastReservations/>}/> 
-
+          <Route exact path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<StepOne />} />
+          <Route path="/step2" element={<StepTwo />} />
+          <Route path="/step3" element={<StepThree />} />
+          <Route path="/pastReservations" element={<PastReservations />} />
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/confirmed' element={<ConfirmedPage />} />
         </Routes>
       </Router>
     </div>

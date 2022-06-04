@@ -1,0 +1,12 @@
+.confirmed {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.confirmed .thank-you {
+  margin: 10px 0;
+}
