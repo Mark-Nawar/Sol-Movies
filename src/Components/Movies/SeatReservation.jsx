@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Form, Button } from "react-bootstrap";
 import Banner from "./Banner";
 import axios from "axios"
+import PopUp from "./PopUp";
+
 export default function SeatReservation({ movie, movieEvent }) {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const bannerText = "Step 3 : Pick your seat!";
@@ -67,6 +69,7 @@ function Cinema({ movie, movieEvent, selectedSeats, onSelectedSeatsChange }) {
     const newR = {
       movieEventID : movieEvent._id,
       occupied : [...selectedSeats]
+
   }
     // id is auto incremented
     console.log(newR);
@@ -99,6 +102,12 @@ function Cinema({ movie, movieEvent, selectedSeats, onSelectedSeatsChange }) {
     }
   }
 
+  const [isShowing, setIsShowing] = useState(false);
+
+  function toggle() {
+    setIsShowing(!isShowing);
+  }
+
   return (
     <div className="Cinema">
       <div className="screen" />
@@ -129,6 +138,11 @@ function Cinema({ movie, movieEvent, selectedSeats, onSelectedSeatsChange }) {
             
           >
             reserve seats
+            <PopUp
+        isShowing={isShowing}
+        hide={toggle}
+      />
+    
           </Button>
         </Form>
     </div>
