@@ -16,6 +16,8 @@ import AddMovie from './Components/Manager/AddMovie';
 import EventList from './Components/Manager/EventList';
 import AddEvent from './Components/Manager/AddEvent';
 import EditEvent from './Components/Manager/EditEvent';
+import Checkout from './Components/checkout';
+import ConfirmedPage from './Components/checkout/confirm';
 
 
 function App() {
@@ -39,7 +41,8 @@ function App() {
           <Route path="/eventList" element={<EventList />} />
           <Route path="/AddEvent" element={<AddEvent />} />
           <Route path="editEvent" element={<EditEvent />} />
-
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/confirmed' element={<ConfirmedPage />} />
         </Routes>
       </Router>
     </div>
