@@ -9,9 +9,12 @@ import Banner from "./Banner";
 import axios from "axios";
 import PopUp from "./PopUp";
 
+import Modal from 'react-modal';
+
 export default function SeatReservation({ movie, movieEvent }) {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const bannerText = "Step 3 : Pick your seat!";
+  
   return (
     <div>
       <Banner bannerText={bannerText} ImageUrl={movie.movieImage} />
@@ -81,6 +84,7 @@ function Cinema({ movie, movieEvent, selectedSeats, onSelectedSeatsChange }) {
       .then((res) => {
         console.log(res.data);
         alert(res.data);
+       
       })
       .catch((err) => {
         alert("reservation failed");
@@ -99,11 +103,22 @@ function Cinema({ movie, movieEvent, selectedSeats, onSelectedSeatsChange }) {
     }
   }
 
-  const [isShowing, setIsShowing] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  function toggle() {
-    setIsShowing(!isShowing);
+  const setModalIsOpenToTrue =()=>{
+      setModalIsOpen(true)
   }
+  const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)',
+      backgroundColor       : '#3b3b3b'      
+    }
+};
 
   return (
     <div className="Cinema">
@@ -128,11 +143,15 @@ function Cinema({ movie, movieEvent, selectedSeats, onSelectedSeatsChange }) {
         })}
       </div>
       <Form onSubmit={handleSubmit}>
-        <Button variant="primary" type="submit" className="w-100 mt-1">
-          reserve seats
-          <PopUp isShowing={isShowing} hide={toggle} />
+        <Button variant="primary" type="submit" className="w-100 mt-1" onClick={setModalIsOpenToTrue}>
+          reserve seat
         </Button>
+        <Modal style={customStyles}isOpen={modalIsOpen}>
+           
+           <PopUp/>
+       </Modal>
       </Form>
+     
     </div>
   );
 }
