@@ -33,8 +33,9 @@ import axios from "axios";
 //   }
 // ];
 
-function MovieRow({ category, fetchURL }) {
-  const [movies, setMovies] = useState([]);
+
+function MovieRowM({ category, fetchURL }) {
+   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -50,25 +51,24 @@ function MovieRow({ category, fetchURL }) {
     }
     fetchData();
   }, [fetchURL]);
-
   return (
     <div className="movieRow">
       <h2 className="titleMovie">{category}</h2>
       <div className="row__posters">
         {movies.map((movie) => (
           <NavLink
-            to={"/step2"}
-            state={{ movie: movie }}
-            className="row__poster"
-          >
-            <a>
-              <img key={movie.id} src={movie.movieImage} alt={movie.name} />
-            </a>
-          </NavLink>
+          to={"/eventList"}
+          state={{ movie: movie}}
+          className="row__poster"
+        >
+          <a>
+            <img key={movie.id} src={movie.movieImage} alt={movie.name}/>
+          </a>
+        </NavLink>
         ))}
       </div>
     </div>
   );
 }
 
-export default MovieRow;
+export default MovieRowM;
