@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import Banner from "./Banner";
 import SeatReservation from "./SeatReservation";

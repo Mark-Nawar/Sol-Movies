@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Form, Button } from "react-bootstrap";
 import Banner from "./Banner";
-import axios from "axios"
+import axios from "axios";
 import PopUp from "./PopUp";
 
 export default function SeatReservation({ movie, movieEvent }) {
@@ -56,29 +56,27 @@ function Cinema({ movie, movieEvent, selectedSeats, onSelectedSeatsChange }) {
     { length: 5 * (movieEvent.gridType * 2 + 2) },
     (_, i) => i
   );
-  
-  async function handleSubmit(e) { 
-    if(localStorage.getItem('token')== '')
-    {
-      if(window.confirm("Can't register you are a guest, Sign Up ??")){
+
+  async function handleSubmit(e) {
+    if (localStorage.getItem("token") == "") {
+      if (window.confirm("Can't register you are a guest, Sign Up ??")) {
         navigate("/signup", { replace: true });
-        return 
+        return;
       }
     }
     e.preventDefault();
     const newR = {
-      movieEventID : movieEvent._id,
-      occupied : [...selectedSeats]
-
-  }
+      movieEventID: movieEvent._id,
+      occupied: [...selectedSeats],
+    };
     // id is auto incremented
     console.log(newR);
     const headers = {
-      'x-access-token': localStorage.getItem('token')
-    }
+      "x-access-token": localStorage.getItem("token"),
+    };
     axios
-      .post("http://localhost:5000/reserve/", newR ,{
-        headers: headers
+      .post("http://localhost:5000/reserve/", newR, {
+        headers: headers,
       })
       .then((res) => {
         console.log(res.data);
@@ -88,7 +86,6 @@ function Cinema({ movie, movieEvent, selectedSeats, onSelectedSeatsChange }) {
         alert("reservation failed");
       });
     // //axios.post(insertUrl , newM );
-    
   }
 
   function handleSelectedState(seat) {
@@ -131,20 +128,11 @@ function Cinema({ movie, movieEvent, selectedSeats, onSelectedSeatsChange }) {
         })}
       </div>
       <Form onSubmit={handleSubmit}>
-          <Button
-            variant="primary"
-            type="submit"
-            className="w-100 mt-1"
-            
-          >
-            reserve seats
-            <PopUp
-        isShowing={isShowing}
-        hide={toggle}
-      />
-    
-          </Button>
-        </Form>
+        <Button variant="primary" type="submit" className="w-100 mt-1">
+          reserve seats
+          <PopUp isShowing={isShowing} hide={toggle} />
+        </Button>
+      </Form>
     </div>
   );
 }

@@ -16,34 +16,33 @@ import AddMovie from './Components/Manager/AddMovie';
 import EventList from './Components/Manager/EventList';
 import AddEvent from './Components/Manager/AddEvent';
 import EditEvent from './Components/Manager/EditEvent';
-
-
-
+import Checkout from './Components/checkout';
+import ConfirmedPage from './Components/checkout/confirm';
 
 
 function App() {
   return (
     <div className="App">
-      
-      <Router> 
+
+      <Router>
         <Routes>
-          <Route exact path="/"  element={<Home />}/>
-           <Route path="/signup" element={<SignUp/>}/>
-           <Route path="/signin" element={<SignIn/>}/>
-           <Route path="/step1" element={<StepOne/>}/>  
-           <Route path="/step2" element={<StepTwo/>}/>  
-           <Route path="/step3" element={<StepThree/>}/> 
-           <Route path="/pastReservations" element={<PastReservations/>}/> 
-           <Route path="/dashBoard" element={<DashBoard/>}/>
-           <Route  path="/managerMovies" element={<ShowMovies/>}/>
-           <Route  path="/mangerMovieEvents" element={<MoviesEvents/>}/>
-           <Route path="/EditMovie" element={<EditMovie/>}/>
-           <Route path="/addMovie" element={<AddMovie/>}/>
-           <Route path="/eventList" element={<EventList/>}/>
-           <Route path="/AddEvent" element={<AddEvent/>}/>
-           <Route path="editEvent" element={<EditEvent/>}/>
-
-
+          <Route exact path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/step1" element={<StepOne />} />
+          <Route path="/step2" element={<StepTwo />} />
+          <Route path="/step3" element={<StepThree />} />
+          <Route path="/pastReservations" element={<PastReservations />} />
+          <Route path="/dashBoard" element={<DashBoard />} />
+          <Route path="/managerMovies" element={<ShowMovies />} />
+          <Route path="/mangerMovieEvents" element={<MoviesEvents />} />
+          <Route path="/EditMovie" element={<EditMovie />} />
+          <Route path="/addMovie" element={<AddMovie />} />
+          <Route path="/eventList" element={<EventList />} />
+          <Route path="/AddEvent" element={<AddEvent />} />
+          <Route path="editEvent" element={<EditEvent />} />
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/confirmed' element={<ConfirmedPage />} />
         </Routes>
       </Router>
     </div>

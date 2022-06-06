@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Banner from "./Banner";
 import "./step2.css";
@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavMovies from "./NavMovies";
-import axios from "axios"
+import axios from "axios";
 // const Mymovies = [
 //   {
 //     id: 1,
@@ -66,75 +66,70 @@ import axios from "axios"
 //   },
 // ];
 const PastReservations = () => {
-   const [Mymovies, setMymovies] = useState([]);
+  const [Mymovies, setMymovies] = useState([]);
   const [delet, setDelete] = useState(false);
 
-   useEffect(() => {
-     async function fetchData() {
-        const headers = {
-      'x-access-token': localStorage.getItem('token')
+  useEffect(() => {
+    async function fetchData() {
+      const headers = {
+        "x-access-token": localStorage.getItem("token"),
+      };
+      axios
+        .get("http://localhost:5000/viewReser", {
+          headers: headers,
+        })
+        .then((res) => {
+          console.log(res.data);
+          setMymovies(res.data);
+        })
+        .catch((err) => {
+          alert("reservation status failed");
+        });
     }
-    axios
-      .get("http://localhost:5000/viewReser" ,{
-        headers: headers
-      })
-      .then((res) => {
-        console.log(res.data);
-        setMymovies(res.data);
-      })
-      .catch((err) => {
-        alert("reservation status failed");
-      });
-      
-     }
-     fetchData();
-    },[]
-   );
-    
-  
+    fetchData();
+  }, []);
 
   const bannerText = "Your Reservations";
   const imageUrl = "https://images4.alphacoders.com/758/thumb-1920-75838.jpg";
 
-  const handleDeletion= (movieDate , startTime ,movie)=>{
+  const handleDeletion = (movieDate, startTime, movie) => {
     var today = new Date();
-    const d1 = new Date(movieDate+" "+startTime);
-    const hours = Math.floor((d1-today) / (1000 * 60 * 60)) % 24;
+    const d1 = new Date(movieDate + " " + startTime);
+    const hours = Math.floor((d1 - today) / (1000 * 60 * 60)) % 24;
 
-    if(hours>=3){
-    alert("movie deleted");
-    const newR = {
-      "userID" : movie.user,
-      "movieEventID" : movie.movieEvent,
-      "occupied"    : movie.occupied,
-  }
-    // id is auto incremented
-    console.log(newR);
-    const headers = {
-      'x-access-token': localStorage.getItem('token')
-    }
-    axios
-      .post("http://localhost:5000/deleteReservation", newR ,{
-        headers: headers
-      })
-      .then((res) => {
-        console.log(res.data);
-        alert(res.data);
-      })
-      .catch((err) => {
-        alert("reservation failed");
-      });
-    // //axios.post(insertUrl , newM );
-    }else
-    alert("movie in less than three hours not deleted");
-    };
+    if (hours >= 3) {
+      alert("movie deleted");
+      const newR = {
+        userID: movie.user,
+        movieEventID: movie.movieEvent,
+        occupied: movie.occupied,
+      };
+      // id is auto incremented
+      console.log(newR);
+      const headers = {
+        "x-access-token": localStorage.getItem("token"),
+      };
+      axios
+        .post("http://localhost:5000/deleteReservation", newR, {
+          headers: headers,
+        })
+        .then((res) => {
+          console.log(res.data);
+          alert(res.data);
+        })
+        .catch((err) => {
+          alert("reservation failed");
+        });
+      // //axios.post(insertUrl , newM );
+    } else alert("movie in less than three hours not deleted");
+  };
   return (
     <div>
       <NavMovies whereIam={2} />
       <Banner bannerText={bannerText} ImageUrl={imageUrl} />
       <div className="general_timings">
         <div>
-          <ShowCase1  />
+          <ShowCase1 />
         </div>
 
         {Mymovies.map((Mymovie) => (
@@ -165,7 +160,18 @@ const PastReservations = () => {
               </small>
             </span>
             <span>
-              <FontAwesomeIcon onClick={() => handleDeletion(Mymovie.found.date ,Mymovie.found.S_time,Mymovie)} icon={faTrash} color="black" size="2x" />
+              <FontAwesomeIcon
+                onClick={() =>
+                  handleDeletion(
+                    Mymovie.found.date,
+                    Mymovie.found.S_time,
+                    Mymovie
+                  )
+                }
+                icon={faTrash}
+                color="black"
+                size="2x"
+              />
             </span>
           </div>
         ))}

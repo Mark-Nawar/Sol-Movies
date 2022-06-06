@@ -18,7 +18,12 @@
     "react-router-dom": "^6.1.1",
     "react-scripts": "5.0.0",
     "three": "^0.135.0",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "@solana/pay": "^0.2.0",
+    "@solana/wallet-adapter-wallets": "^0.16.1",
+    "@solana/web3.js": "^1.43.4",
+    "bignumber.js": "^9.0.2",
+    "react-circular-progressbar": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,32 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation , NavLink } from 'react-router-dom'
-import Banner from './Banner'
-import SeatReservation from './SeatReservation'
-import './step2.css'
-import { faCalendarDay ,faClock, faAlignJustify} from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from "react";
+import { useLocation, NavLink } from "react-router-dom";
+import Banner from "./Banner";
+import SeatReservation from "./SeatReservation";
+import "./step2.css";
+import {
+  faCalendarDay,
+  faClock,
+  faAlignJustify,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NavMovies from './NavMovies'
-import PopUp from './PopUp';  
-  
+import NavMovies from "./NavMovies";
+import PopUp from "./PopUp";
 
 const StepThree = () => {
-    const location  = useLocation();
-    console.log(location);
-    const  movie  = location.state?.movie;
-    const  moviesEvent  = location.state?.movieEvent;
+  const location = useLocation();
+  console.log(location);
+  const movie = location.state?.movie;
+  const moviesEvent = location.state?.movieEvent;
 
-    const [isShowing, setIsShowing] = useState(false);
+  const [isShowing, setIsShowing] = useState(false);
 
-    function toggle() {
-      setIsShowing(!isShowing);
-    }
+  function toggle() {
+    setIsShowing(!isShowing);
+  }
 
-    return (
-        <div>
-            <NavMovies whereIam={1}/>
-            <SeatReservation movie={movie} movieEvent={moviesEvent}/>
-        </div>
-    )
-}
+  return (
+    <div>
+      <NavMovies whereIam={1} />
+      <SeatReservation movie={movie} movieEvent={moviesEvent} />
+    </div>
+  );
+};
 
-export default StepThree
+export default StepThree;
